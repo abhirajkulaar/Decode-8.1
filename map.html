@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title>Covine 21 - Covid Map</title>
+
+    
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="product.css" rel="stylesheet">
+    <style>
+        
+     #mapid{
+        width: 100%;
+    padding-bottom: 100%;
+     }
+     /*
+     #mapid{
+        width: 500px;
+    padding-bottom: 500px;
+     }*/
+    </style>
+  </head>
+
+  <body>
+    <nav class="site-header sticky-top py-1">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+           <a class="py-2  d-md-inline-block" href="index.html">Home</a>
+          <a class="py-2  d-md-inline-block" href="trials.html">Trials</a>
+          <a class="py-2  d-md-inline-block" href="precautions.html">CoVid Precautions</a>
+          <a class="py-2  d-md-inline-block" href="map.html">Stats Map</a>
+          <a class="py-2  d-md-inline-block" href="store_locator.html">Test Locator</a>
+          <a class="py-2  d-md-inline-block" href="team.html">About</a>
+        </div>
+      </nav>
+
+
+    
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Stay Safe!</h1>
+          <p>Here's a map showing latest CoVid stats from across the nation. With the help of <b>Covine-21</b>, it'll all be better soon but stay safe till then and don't go out if in red!</p>
+          
+        </div>
+      </div>
+   <div class="container">
+
+    <h3>Map overlay criteria:</h3>
+    <select class="form-control" name="criteria" id="criteria" onchange="setMap()">
+        
+        <option value="Cases,6211672">Total Cases</option>
+        <option value="Active,942217">Active Cases</option>
+        <option value="Recoveries,5352078">Recovered Cases</option>
+        <option value="Deaths,99002">Deaths</option>
+
+    </select>
+    <div>Please Note: The size of circles increases by a factor of 3 when going into <b>District View</b> to ensure visibility of smaller disctricts.</div>
+    <div>Also the size is scaled as <b>proportion of total</b>, so will change depending on criteria.  </div>
+    <div id="mapid"></div>
+
+   </div>
+
+ 
+    
+
+
+  
+
+  
+   <footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+        <small class="d-block mb-3 text-muted">&copy; 2020</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Home</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="index.html">Go Gome</a></li>
+      
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Trials</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="trials.html">Testing Methodology</a></li>
+         
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Help</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="map.html">Covid Map</a></li>
+          <li><a class="text-muted" href="store_locator.html">Testing center Map</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="team.html">Team</a></li>
+         
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+ 
+ <script src="map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Covine 21 Trials</title>
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="product.css" rel="stylesheet">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Set a background color */
+
+.timeline  img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: lightslategrey;
+  border-radius: 46px;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: orange;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.timeline .container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  
+}
+.timeline .container{
+    margin: initial;
+} 
+/* The circles on the timeline */
+.timeline .container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #FF9F55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.timeline .left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.timeline .right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.timeline .left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.timeline .right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.timeline .right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.timeline .content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+/* Place the timelime to the left */
+.timeline::after {
+    left: 31px !important;
+  }
+
+/* Full-width containers */
+.timeline .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+/* Make sure that all arrows are pointing leftwards */
+.timeline.container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+/* Make sure all circles are at the same spot */
+.timeline .left::after {
+    left: 15px;
+  }
+
+.timeline .right::after{
+  left: 18px;
+}
+
+
+/* Make all right containers behave like the left ones */
+.timeline .right {
+    left: 0%;
+  }
+}
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="site-header sticky-top py-1">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+           <a class="py-2  d-md-inline-block" href="index.html">Home</a>
+          <a class="py-2  d-md-inline-block" href="trials.html">Trials</a>
+          <a class="py-2  d-md-inline-block" href="precautions.html">CoVid Precautions</a>
+          <a class="py-2  d-md-inline-block" href="map.html">Stats Map</a>
+          <a class="py-2  d-md-inline-block" href="store_locator.html">Test Locator</a>
+          <a class="py-2  d-md-inline-block" href="team.html">About</a>
+        </div>
+      </nav>
+
+
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Journey so far!</h1>
+          <p>The journey to launch has been one of endless toil from the team and an overwhelming support from all of you.</p>
+          
+        </div>
+      </div>
+
+<div class="timeline ">
+    <div class="container left">
+      <div class="content">
+        <h2>January,2021</h2>
+        <h3>Public Release</h3>
+        <img src="photos/Release_trials.jpg" alt="">
+        <p>
+            After overwhelming efforts by the team. <b>Covine</b> is released to public with a potential to save more than 2 million lives. One of the greatest medical achivement of 21st century.
+        </p></div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>December,2020</h2>
+        <h3>FDA Approval</h3>
+        <img src="photos/FDA_trials.png" alt="">
+        <p>
+            Following months of strict independent studies and ferderal scrutiny the vaccine gets approved by the <b>FDA</b> for public release and administration.
+        </p></div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h2>August,2020</h2>
+        <h3>Phase 3 Human Trials</h3>
+        <img src="photos/Phase3_trials.jpg" alt="">
+        <p>A prolonged study on a pool of more than <b>2000</b> patients is performed on the vaccine. The drug is evaluated to be beneficiial to more than 80& of the patients. Reportedly leading to a 70% lesser death rate per CoVid patient as compared to population not being administered with Covine-21.</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>August,2020</h2>
+        <h3>Phase 2 Human Trials</h3>
+        <img src="photos/Phase2_trials.jpg" alt="">
+        <p>Phase 2 begins to explore the effectiveness of the drug. A total of <b>250</b> participants volunteer for the effort.</p>
+      </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+          
+            <h2>June,2020</h2>
+            <h3>Phase 1 Human Trials</h3>
+            <img src="photos/Phase1_trials.jpeg" alt="">
+            <p>The vaccine enters Phase 1 human trials with a pool of <b>50</b> human subjects to explore safety and dosing of the drug..</p>
+          </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+          
+        <h2>May,2020</h2>
+        <h3>Preclinical Trials</h3>
+        <img src="photos/preclinical_trials.jpg" alt="">
+        <p><b>Covine 20</b> passes pre-clinical trials assuring safety of injection and is provisioned for initial limited human testing.</p>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+        <small class="d-block mb-3 text-muted">&copy; 2020</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Home</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="index.html">Go Gome</a></li>
+      
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Trials</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="trials.html">Testing Methodology</a></li>
+         
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Help</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="map.html">Covid Map</a></li>
+          <li><a class="text-muted" href="store_locator.html">Testing center Map</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="team.html">Team</a></li>
+         
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+ 
+  </body>
+</html>

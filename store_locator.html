@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Product example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/product/">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="product.css" rel="stylesheet">
+    <style>
+        
+     #mapid{
+        width: 100%;
+    padding-bottom: 100%;
+     }
+     /*
+     #mapid{
+        width: 500px;
+    padding-bottom: 500px;
+     }*/
+    </style>
+  </head>
+
+  <body>
+    <nav class="site-header sticky-top py-1">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+           <a class="py-2  d-md-inline-block" href="index.html">Home</a>
+          <a class="py-2  d-md-inline-block" href="trials.html">Trials</a>
+          <a class="py-2  d-md-inline-block" href="precautions.html">CoVid Precautions</a>
+          <a class="py-2  d-md-inline-block" href="map.html">Stats Map</a>
+          <a class="py-2  d-md-inline-block" href="store_locator.html">Test Locator</a>
+          <a class="py-2  d-md-inline-block" href="team.html">About</a>
+        </div>
+      </nav>
+
+
+    
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Get Tested!</h1>
+          <p>Here's a map showing all the locations where you can get youself tested. </p>
+          <p><b>Please Note:</b> As per procedure you need to call before visiting for a test.</p>
+        </div>
+      </div>
+   <div class="container">
+
+   <button class="btn btn-primary" onclick="getLocation()">Get my location</button>
+    <div>Click the button above to focus on your location. Kindly <b>allow</b> the website to access your location.</div>
+    <div id="mapid"></div>
+
+   </div>
+
+ 
+    
+
+
+  
+
+    
+   <footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+        <small class="d-block mb-3 text-muted">&copy; 2020</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Home</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="index.html">Go Gome</a></li>
+      
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Trials</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="trials.html">Testing Methodology</a></li>
+         
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Help</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="map.html">Covid Map</a></li>
+          <li><a class="text-muted" href="store_locator.html">Testing center Map</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="team.html">Team</a></li>
+         
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+        var mymap = L.map('mapid').setView([23, 78], 5.3);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWJoaXJhamt1bGFhIiwiYSI6ImNrZnNweWNlbDA5aWIzM3Q4NmNycHFqNTUifQ.vyYQ9Q_B4lnPDrH-uEDpRQ', {
+    attribution: 'made by - <a href="https://www.linkedin.com/in/abhiraj-kulaar-85b156177/">Abhiraj Singh Kulaar</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
+
+
+
+
+
+
+
+
+window.val=1000000
+window.val2=3000000
+window.sizeby="Active"
+
+changeToState()
+
+
+
+function changeToState(){
+    var centresList= [
+       
+        {
+            "Name": "Sri Venkateswara Institute of Medical Sciences, Tirupati",
+            "X": "13.6",
+            "Y": "79.39"
+        },
+        {
+            "Name": "Andhra Medical College, Visakhapatnam, Andhra Pradesh",
+            "X": "17.7064928",
+            "Y": "83.304866"
+        },
+        {
+            "Name": "GMC, Anantapur, Andhra Pradesh",
+            "X": "14.6712103",
+            "Y": "77.5928737"
+        },
+        {
+            "Name": "Siddhartha Medical College, Vijayawada",
+            "X": "16.5174383",
+            "Y": "80.6713233"
+        },
+        {
+            "Name": "Rajeev Gandhi Institute of Medical Sciences, Kadapa",
+            "X": "14.433236",
+            "Y": "78.8644499"
+        },
+        {
+            "Name": "Rangaraya Medical College, Kakinada",
+            "X": "16.9791646",
+            "Y": "82.237258"
+        },
+        {
+            "Name": "Guntur Medical College, Guntur",
+            "X": "16.2982124",
+            "Y": "80.4383123"
+        },
+        {
+            "Name": "Regional Medical Research Centre, Port Blair, Andaman and Nicobar",
+            "X": "11.6346545",
+            "Y": "92.7146371"
+        },
+        {
+            "Name": "Gauhati Medical College, Guwahati",
+            "X": "26.1542109",
+            "Y": "91.7700714"
+        },
+        {
+            "Name": "Regional Medical Research Center, Dibrugarh",
+            "X": "27.42",
+            "Y": "9498"
+        },
+        {
+            "Name": "Silchar Medical College, Silchar",
+            "X": "24.775798",
+            "Y": "92.7949158"
+        },
+        {
+            "Name": "Jorhat Medical College, Jorhat",
+            "X": "26.7417869",
+            "Y": "94.1972378"
+        },
+        {
+            "Name": "Tezpur Medical College, Tezpur",
+            "X": "26.6814787",
+            "Y": "92.6522739"
+        },
+        {
+            "Name": "Fakhruddin Medical College, Barpeta",
+            "X": "26.3244225",
+            "Y": "90.9849772"
+        },
+        {
+            "Name": "Rajendra Memorial Research Institute of Medical Sciences, Patna",
+            "X": "25.5997386",
+            "Y": "85.197722"
+        },
+        {
+            "Name": "Patna Medical College, Patna",
+            "X": "25.6209142",
+            "Y": "85.1603168"
+        },
+        {
+            "Name": "Darbhanga Medical College, Darbhanga",
+            "X": "26.1337743",
+            "Y": "85.9015883"
+        },
+        {
+            "Name": "S K Medical College, Muzaffarpur",
+            "X": "26.1669211",
+            "Y": "85.3934566"
+        },
+        {
+            "Name": "Post Graduate Institute of Medical Education & Research, Chandigarh",
+            "X": "30.7649646",
+            "Y": "76.7750066"
+        },
+        {
+            "Name": "Government Medical College & Hospital, Chandigarh",
+            "X": "30.708827",
+            "Y": "76.7804878"
+        },
+        {
+            "Name": "All India Institute Medical Sciences, Raipur",
+            "X": "21.2573871",
+            "Y": "81.5775056"
+        },
+        {
+            "Name": "Late Sri BaliramKashyap Memorial Govt. Medical College, Jagdalpur",
+            "X": "19.0506869",
+            "Y": "81.9481812"
+        },
+        {
+            "Name": "All India Institute Medical Sciences, Delhi",
+            "X": "28.5671773",
+            "Y": "77.2100451"
+        },
+        {
+            "Name": "National Centre for Disease Control, Delhi",
+            "X": "28.6794681",
+            "Y": "77.223585"
+        },
+        {
+            "Name": "Lady Hardinge Medical College, New Delhi",
+            "X": "28.634208",
+            "Y": "77.2125679"
+        },
+        {
+            "Name": "BJ Medical College, Ahmedabad",
+            "X": "23.0524508",
+            "Y": "72.6028567"
+        },
+        {
+            "Name": "M.P.Shah Government Medical College, Jamnagar",
+            "X": "22.4773074",
+            "Y": "70.0652399"
+        },
+        {
+            "Name": "Government Medical College, Surat 1",
+            "X": "21.1780573",
+            "Y": "72.8202524"
+        },
+        {
+            "Name": "GMC, Bhavnagar",
+            "X": "21.7687381",
+            "Y": "72.1369852"
+        },
+        {
+            "Name": "PDU GMC, Rajkot",
+            "X": "22.3073151",
+            "Y": "70.7984023"
+        },
+        {
+            "Name": "Government Medical College & SSG Hospital, Vadodara",
+            "X": "22.3063874",
+            "Y": "73.1908466"
+        },
+        {
+            "Name": "Pt. B.D. Sharma Post Graduate Inst. of Med. Sciences, Rohtak, Haryana",
+            "X": "28.8801261",
+            "Y": "76.6055682"
+        },
+        {
+            "Name": "BPS Govt Medical College, Sonipat",
+            "X": "29.1520573",
+            "Y": "76.8083989"
+        },
+        {
+            "Name": "Indira Gandhi Medical College, Shimla, Himachal Pradesh",
+            "X": "31.1064901",
+            "Y": "77.1822518"
+        },
+        {
+            "Name": "Dr.Rajendra Prasad Govt. Med. College, Kangra, Tanda, Himachal Pradesh",
+            "X": "32.0991951",
+            "Y": "76.2986883"
+        },
+        {
+            "Name": "Sher‐e‐ Kashmir Institute of Medical Sciences, Srinagar",
+            "X": "34.136145",
+            "Y": "74.8000465"
+        },
+        {
+            "Name": "Government Medical College, Jammu",
+            "X": "32.7361128",
+            "Y": "74.8539737"
+        },
+        {
+            "Name": "Government Medical College, Srinagar",
+            "X": "34.0859652",
+            "Y": "74.7988339"
+        },
+        {
+            "Name": "MGM Medical College, Jamshedpur",
+            "X": "22.843664",
+            "Y": "86.232396"
+        },
+        {
+            "Name": "Rajendra Institute of Medical Sciences, Ranchi",
+            "X": "23.3915056",
+            "Y": "85.3484537"
+        },
+        {
+            "Name": "Bangalore Medical College & Research Institute, Bangalore",
+            "X": "12.9593958",
+            "Y": "77.5747214"
+        },
+        {
+            "Name": "National Institute of Virology Field Unit Bangalore",
+            "X": "12.9715987",
+            "Y": "77.5945627"
+        },
+        {
+            "Name": "Mysore Medical College & Research Institute, Mysore",
+            "X": "12.3150229",
+            "Y": "76.6504047"
+        },
+        {
+            "Name": "Hassan Inst. of Med. Sciences, Hassan, Karnataka",
+            "X": "13.0048638",
+            "Y": "76.1026865"
+        },
+        {
+            "Name": "Shimoga Inst. of Med. Sciences, Shivamogga, Karnataka",
+            "X": "13.9326526",
+            "Y": "75.5668522"
+        },
+        {
+            "Name": "Vijayanagar Institute of Medical Science, Bellary",
+            "X": "15.1529479",
+            "Y": "76.8966905"
+        },
+        {
+            "Name": "Gulbarga Institute Of Medical Sciences, Gulbarga",
+            "X": "17.32723",
+            "Y": "76.844089"
+        },
+        {
+            "Name": "National Institute of Virology Field Unit, Kerala",
+            "X": "9.4185125",
+            "Y": "76.3431999"
+        },
+        {
+            "Name": "Govt. Medical College, Thiruvananthapuram, Kerala",
+            "X": "8.5236475",
+            "Y": "76.9282705"
+        },
+        {
+            "Name": "Govt. Medical College, Kozhikode, Kerala",
+            "X": "11.272211",
+            "Y": "75.8371979"
+        },
+        {
+            "Name": "Government Medical College, Thrissur",
+            "X": "10.6144974",
+            "Y": "76.1960673"
+        },
+        {
+            "Name": "Sonam Namgyal Memorial Hospital, Leh",
+            "X": "34.1534817",
+            "Y": "77.5806212"
+        },
+        {
+            "Name": "All India Institute Medical Sciences, Bhopal",
+            "X": "23.2067582",
+            "Y": "77.4601622"
+        },
+        {
+            "Name": "National Institute of Research in Tribal Health (NIRTH), Jabalpur",
+            "X": "23.1472217",
+            "Y": "79.8785864"
+        },
+        {
+            "Name": "Bundelkhand Medical College, Sagar",
+            "X": "23.818953",
+            "Y": "78.7548826"
+        },
+        {
+            "Name": "MGM Medical College, Indore",
+            "X": "22.714332",
+            "Y": "75.8828785"
+        },
+        {
+            "Name": "Gajra Raja Medical College, Gwalior",
+            "X": "26.2",
+            "Y": "78.15"
+        },
+        {
+            "Name": "S.S Medical College, Rewa",
+            "X": "24.5317028",
+            "Y": "81.2997124"
+        },
+        {
+            "Name": "NEIGRI of Health and Medical Sciences, Shillong, Meghalaya",
+            "X": "25.5909",
+            "Y": "91.9372999"
+        },
+        {
+            "Name": "Indira Gandhi Government Medical College, Nagpur",
+            "X": "21.153418",
+            "Y": "79.0939735"
+        },
+        {
+            "Name": "Kasturba Hospital for Infectious Diseases, Mumbai",
+            "X": "18.9840364",
+            "Y": "72.8298487"
+        },
+        {
+            "Name": "Government Medical College, Miraj, Sangli",
+            "X": "16.8370254",
+            "Y": "74.6474007"
+        },
+        {
+            "Name": "Seth GS Medical College & KEM Hospital , Mumbai",
+            "X": "19.0025142",
+            "Y": "72.8420769"
+        },
+        {
+            "Name": "Government Medical college, Nagpur",
+            "X": "21.126387",
+            "Y": "79.0964896"
+        },
+        {
+            "Name": "Government Medical College, Aurangabad",
+            "X": "19.8899963",
+            "Y": "75.3181535"
+        },
+        {
+            "Name": "V. M. Government Medical College, Solapur",
+            "X": "17.665311",
+            "Y": "75.909637"
+        },
+        {
+            "Name": "Shri Bhausaheb Hire Government Medical College, Dhule",
+            "X": "20.8639536",
+            "Y": "74.7623454"
+        },
+        {
+            "Name": "Government Medical College and Hospital & Superspeciality Hospital, Akola",
+            "X": "20.7018985",
+            "Y": "77.0002009"
+        },
+        {
+            "Name": "J N Inst. of Med. Sciences Hospital, Imphal‐East, Manipur",
+            "X": "24.8100744",
+            "Y": "93.9611346"
+        },
+        {
+            "Name": "Regional Institute of Medical Sciences, Imphal",
+            "X": "24.8158998",
+            "Y": "93.9228051"
+        },
+        {
+            "Name": "Regional Medical Research Center, Bhubaneswar",
+            "X": "20.3173097",
+            "Y": "85.819847"
+        },
+        {
+            "Name": "SCB Medical College, Cuttack",
+            "X": "20.4721281",
+            "Y": "85.8915273"
+        },
+        {
+            "Name": "Jawaharlal Institute of Postgraduate Medical Education & Research, Puducherry",
+            "X": "11.9503023",
+            "Y": "79.7996963"
+        },
+        {
+            "Name": "Indira Gandhi Medical College & Research Institute, Puducherry",
+            "X": "11.9404142",
+            "Y": "79.7962791"
+        },
+        {
+            "Name": "Government Medical College, Patiala, Punjab",
+            "X": "30.3280627",
+            "Y": "76.3851284"
+        },
+        {
+            "Name": "Government Medical College, Amritsar",
+            "X": "31.6538532",
+            "Y": "74.8852258"
+        },
+        {
+            "Name": "Sawai Man Singh, Jaipur",
+            "X": "26.8940112",
+            "Y": "75.8032279"
+        },
+        {
+            "Name": "Dr. S.N Medical College, Jodhpur",
+            "X": "26.2721244",
+            "Y": "73.0318572"
+        },
+        {
+            "Name": "Jhalawar Medical College, Jhalawar, Rajasthan",
+            "X": "24.5855602",
+            "Y": "76.161038"
+        },
+        {
+            "Name": "SP Med. College, Bikaner, Rajasthan",
+            "X": "28.0063889",
+            "Y": "73.3305142"
+        },
+        {
+            "Name": "RNT Medical College, Udaipur",
+            "X": "24.588215",
+            "Y": "73.6949805"
+        },
+        {
+            "Name": "AIIMS, Jodhpur",
+            "X": "26.2402051",
+            "Y": "73.0049621"
+        },
+        {
+            "Name": "King’s Institute of Preventive Medicine & Research, Chennai",
+            "X": "13.0124413",
+            "Y": "80.2176106"
+        },
+        {
+            "Name": "Government Medical College, Theni",
+            "X": "10.0061925",
+            "Y": "77.5536939"
+        },
+        {
+            "Name": "Madurai Medical College, Madurai",
+            "X": "9.9258191",
+            "Y": "78.1367278"
+        },
+        {
+            "Name": "Government Mohan Kumaramangalam Medical College, Salem",
+            "X": "11.6546272",
+            "Y": "78.1522171"
+        },
+        {
+            "Name": "Government Medical College, Thiruvarur",
+            "X": "10.7755154",
+            "Y": "79.6051714"
+        },
+        {
+            "Name": "Government Medical College, Villupuram",
+            "X": "11.9931218",
+            "Y": "79.5173907"
+        },
+        {
+            "Name": "Tirunelveli Medical College, Tirunelveli",
+            "X": "8.7117515",
+            "Y": "77.7508167"
+        },
+        {
+            "Name": "Coimbatore Medical College, Coimbatore",
+            "X": "11.0286992",
+            "Y": "77.0239032"
+        },
+        {
+            "Name": "Madras Medical College, Chennai, Tamil Nadu",
+            "X": "13.0799717",
+            "Y": "80.2722928"
+        },
+        {
+            "Name": "Government Medical College, Agartala",
+            "X": "23.8604332",
+            "Y": "91.2927536"
+        },
+        {
+            "Name": "Gandhi Medical College, Secunderabad",
+            "X": "17.4246598",
+            "Y": "78.5043917"
+        },
+        {
+            "Name": "Osmania Medical College, Hyderabad",
+            "X": "17.3822473",
+            "Y": "78.4828573"
+        },
+        {
+            "Name": "Kakatiya Medical College, Nizampura, Warangal",
+            "X": "18.0013286",
+            "Y": "79.591125"
+        },
+        {
+            "Name": "King’s George Medical University, Lucknow",
+            "X": "26.8692591",
+            "Y": "80.9162402"
+        },
+        {
+            "Name": "Institute of Medical Sciences, Banaras Hindu University, Varanasi",
+            "X": "25.2744547",
+            "Y": "82.9995254"
+        },
+        {
+            "Name": "Jawaharlal Nehru Medical College, Aligarh",
+            "X": "27.918604",
+            "Y": "78.0857405"
+        },
+        {
+            "Name": "Government Medical College, Haldwani",
+            "X": "29.2063975",
+            "Y": "79.5213812"
+        },
+        {
+            "Name": "AIIMS, Rishikesh",
+            "X": "30.0818351",
+            "Y": "78.2887633"
+        },
+        {
+            "Name": "Doon Government Medical College, Dehradun",
+            "X": "30.3080671",
+            "Y": "78.0240864"
+        },
+        {
+            "Name": "National Institute of Cholera and Enteric Diseases, Kolkata",
+            "X": "22.565824",
+            "Y": "88.3998152"
+        },
+        {
+            "Name": "IPGMER, Kolkata",
+            "X": "22.5394793",
+            "Y": "88.3418445"
+        },
+        {
+            "Name": "Murshidabad Medical College & Hospital, Murshidabad, Berhampur, West Bengal",
+            "X": "24.0888414",
+            "Y": "88.2592899"
+        },
+        {
+            "Name": "Midnapore Medical College & Hospital, Midnapore",
+            "X": "22.4216543",
+            "Y": "87.3231346"
+        },
+        {
+            "Name": "North Bengal Medical College, Darjeeling",
+            "X": "26.6911525",
+            "Y": "88.3878995"
+        },
+        {
+            "Name": "Malda Medical College, Malda",
+            "X": "24.9944498",
+            "Y": "88.1383964"
+        },
+        {
+            "Name": "RG Kar Medical College, Kolkata",
+            "X": "22.6040744",
+            "Y": "88.3781099"
+        },
+        {
+            "Name": "RG Kar Medical College, Kolkata",
+            "X": "39.390897",
+            "Y": "-99.066067"
+        }
+    ]
+
+    for(var i=0;i<centresList.length;i++)
+{
+
+    var circle = L.marker([centresList[i].X, centresList[i].Y], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+    //stateData[i].cases/6211672
+}).addTo(mymap);
+circle.bindPopup(centresList[i].Name);
+
+
+
+
+}
+
+
+}
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+ // x.innerHTML = "Latitude: " + position.coords.latitude +
+ // "<br>Longitude: " + position.coords.longitude;
+  mymap.setView([position.coords.latitude, position.coords.longitude],11);
+}
+
+
+
+
+
+
+
+function clearMap() {
+    for(i in mymap._layers) {
+        if(mymap._layers[i]._path != undefined) {
+            try {
+                mymap.removeLayer(mymap._layers[i]);
+            }
+            catch(e) {
+                console.log("problem with " + e +mymap._layers[i]);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+ 
+  </body>
+</html>
